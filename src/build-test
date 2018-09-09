@@ -1,0 +1,8 @@
+#!/usr/local/bin/zsh
+
+GIT_SHA=$(git rev-parse --short HEAD)
+R=${GIT_SHA}
+
+LDFLAGS="-X main.BuildVersion=${R} -X main.BuildDate=`date -u '+%Y%m%d'` -X main.GitRev=${GIT_SHA}"
+
+go build -ldflags ${LDFLAGS} -o ../bin/mbdns mbdns.go 

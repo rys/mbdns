@@ -1,0 +1,17 @@
+# 08-09-2018
+
+Functioning implementation tested on `darwin-amd64`, `freebsd-amd64` and `linux-mipsle`
+
++ [x] `darwin-amd64` (macOS 10.13)
++ [x] `freebsd-amd64` (FreeNAS 11)
++ [x] `linux-mipsle` (EdgeOS 1.10, ER-X)
++ [x] Runs from secured JSON-based config
++ [x] Supports `A` and `AAAA` record types against the correct API endpoint
++ [x] Error diagnosis on non-200 returns
++ [x] 1s delay between record update attempts (compile time)
++ [x] 300s delay between full loop update attempts (compile time)
++ [x] Scripts for building a release with embedded `BuildVersion`, `BuildDate` and `GitRev` (printed to console at start)
+
+# 09-09-2018
+
++ [x] Support relocating and renaming `./mbdns.conf` with `--config`

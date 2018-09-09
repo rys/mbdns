@@ -1,0 +1,16 @@
+[
+    {
+        "domain" : "yourdomain.com",
+        "token" : "domain_api_password",
+        "host" : "hostname",
+        "ttl" : "3600",
+        "record": "A"
+    },
+    {
+        "domain" : "yourdomain.com",
+        "token" : "domain_api_password",
+        "host" : "hostname",
+        "ttl" : "3600",
+        "record": "AAAA"     
+    }
+]
