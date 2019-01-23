@@ -68,13 +68,13 @@ func process() {
 
 			response, err := http.PostForm(mbURL, url.Values{"domain": {records[i].Domain}, "password": {records[i].Token}, "command": {command}})
 
-			body, _ := ioutil.ReadAll(response.Body)
-			response.Body.Close()
-
 			if err != nil {
 				log.Println(fmt.Sprintf(mbResponseError, records[i].Host, records[i].Domain, records[i].Record, records[i].TTL, err.Error()))
 				continue
 			}
+
+			body, _ := ioutil.ReadAll(response.Body)
+			response.Body.Close()
 
 			if response.StatusCode != 200 {
 				log.Println(fmt.Sprintf(mbResponseError, records[i].Host, records[i].Domain, records[i].Record, records[i].TTL, response.Status))
