@@ -7,27 +7,30 @@ D=../dist
 R=${1}
 [[ -z ${R} ]] && R=${GIT_SHA}
 
-[[ -d ${B}/${R} ]] && rm -rf ${B}/${R}
-mkdir -p ${B}/${R}
-[[ -d ${D}/${R} ]] && rm -rf ${D}/${R}
-mkdir -p ${D}/${R}
+bindir=${B}/${R}
+dists=${D}/${R}
+binary=${bindir}/mbdns-${R}
+
+[[ -d ${bindir} ]] && rm -rf ${bindir} && mkdir -p ${bindir}
+[[ -d ${dists} ]]  && rm -rf ${dists}  && mkdir -p ${dists}
 
 LDFLAGS="-X main.BuildVersion=${R} -X main.BuildDate=`date -u '+%Y%m%d'` -X main.GitRev=${GIT_SHA}"
 
-GOOS=linux   GOARCH=arm    GOARM=6 go build -ldflags ${LDFLAGS} -o ${B}/${R}/mbdns-${R}-linux-armv6   mbdns.go
-GOOS=linux   GOARCH=arm    GOARM=7 go build -ldflags ${LDFLAGS} -o ${B}/${R}/mbdns-${R}-linux-armv7   mbdns.go
-GOOS=linux   GOARCH=mipsle         go build -ldflags ${LDFLAGS} -o ${B}/${R}/mbdns-${R}-linux-mipsle  mbdns.go
-GOOS=darwin  GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${B}/${R}/mbdns-${R}-darwin-amd64  mbdns.go
-GOOS=freebsd GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${B}/${R}/mbdns-${R}-freebsd-amd64 mbdns.go
-GOOS=linux   GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${B}/${R}/mbdns-${R}-linux-amd64   mbdns.go
+GOOS=linux   GOARCH=arm    GOARM=6 go build -ldflags ${LDFLAGS} -o ${binary}-linux-armv6   mbdns.go
+GOOS=linux   GOARCH=arm    GOARM=7 go build -ldflags ${LDFLAGS} -o ${binary}-linux-armv7   mbdns.go
+GOOS=linux   GOARCH=mipsle         go build -ldflags ${LDFLAGS} -o ${binary}-linux-mipsle  mbdns.go
+GOOS=darwin  GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${binary}-darwin-amd64  mbdns.go
+GOOS=freebsd GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${binary}-freebsd-amd64 mbdns.go
+GOOS=linux   GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${binary}-linux-amd64   mbdns.go
 
 for i (linux-armv6 linux-armv7 linux-mipsle darwin-amd64 freebsd-amd64 linux-amd64) do
-    P=mbdns-${R}-${i}
-    mkdir -p ${D}/${R}/${P}
-    cp ../doc/mbdns.conf.sample ${D}/${R}/${P}
-    cp ../README.md             ${D}/${R}/${P}
-    cp ../LICENSE               ${D}/${R}/${P}
-    cp ${B}/${R}/${P}           ${D}/${R}/${P}
-    tar czf ${D}/${R}/${P}.tar.gz -C ${D}/${R} ${P}
-    rm -rf ${D}/${R}/${P}
+    rel=mbdns-${R}-${i}
+    out=${dists}/${rel}
+    mkdir -p ${out}
+    cp ../doc/mbdns.conf.sample       ${out}
+    cp ../README.md                   ${out}
+    cp ../LICENSE                     ${out}
+    cp ${binary}-${i}                 ${out}
+    tar czf ${out}.tar.gz -C ${dists} ${rel}
+    rm -rf ${out}
 done
