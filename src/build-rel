@@ -22,8 +22,9 @@ GOOS=linux   GOARCH=mipsle         go build -ldflags ${LDFLAGS} -o ${binary}-lin
 GOOS=darwin  GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${binary}-darwin-amd64  mbdns.go
 GOOS=freebsd GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${binary}-freebsd-amd64 mbdns.go
 GOOS=linux   GOARCH=amd64          go build -ldflags ${LDFLAGS} -o ${binary}-linux-amd64   mbdns.go
+GOOS=linux   GOARCH=arm64          go build -ldflags ${LDFLAGS} -o ${binary}-linux-arm64   mbdns.go
 
-for i (linux-armv6 linux-armv7 linux-mipsle darwin-amd64 freebsd-amd64 linux-amd64) do
+for i (linux-armv6 linux-armv7 linux-mipsle darwin-amd64 freebsd-amd64 linux-amd64 linux-arm64) do
     rel=mbdns-${R}-${i}
     out=${dists}/${rel}
     mkdir -p ${out}
