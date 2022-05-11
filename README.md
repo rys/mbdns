@@ -1,6 +1,6 @@
 # mbdns
 
-`mbdns` is a dynamic DNS update client for the [Mythic Beasts](https://www.mythic-beasts.com/support/api/primary) Primary DNS system, supporting their IPv4 and IPv6 endpoints. Written in [golang](https://golang.org), it supports common home network infrastructure operating systems (FreeBSD, EdgeOS, Linux) and common platform architectures (amd64 and MIPS).
+`mbdns` is a dynamic DNS update client for the [Mythic Beasts](https://www.mythic-beasts.com/support/api/primary) Primary DNS v1 system, supporting their IPv4 and IPv6 endpoints. Written in [golang](https://golang.org), it supports common home network infrastructure operating systems (FreeBSD, EdgeOS, Linux) and common platform architectures (amd64, arm64 and MIPS).
 
 ## Configuring mbdns
 
@@ -20,6 +20,8 @@ Take [doc/mbdns.conf.sample](/doc/mbdns.conf.sample) and configure it to your ne
 
 `mbdns` logs to `stdout`. If your target OS supports it, redirect stdout to a file, logrotate that file, and run the binary in the background via the daemonising system of your choice. `mbdns` makes no attempt to daemonise itself.
 
+systemd will run it nicely if you use the `simple` service type, running the process for you and capturing `stdout`.
+
 `mbdns --version` prints the version information and exits immediately.
 
 Running on a Unix-like might go something like this (assuming `mbdns` is in `$PATH`):
@@ -30,13 +32,17 @@ Running on a Unix-like might go something like this (assuming `mbdns` is in `$PA
 
 `mbdns` logs the following:
 
-* version, build date and git commit SHA1 on startup
+* version, build date and git commit SHA on startup
 * the path to the config file
 * the update command it is attempting to run for the host and domain
 * success or failure including record type and TTL in both cases
 * a small handful of at-startup failure messages if it can't run (no conf, invalid JSON, insecure conf)
 * a message saying it is processing records if it can cleanly start
 
+## Platform specific instructions
+
+- [UniFi Dream Machine SE](/doc/udm-se/README.md)
+
 ## License
 
-`mbdns` is MIT licensed
+`mbdns` is MIT licensed.

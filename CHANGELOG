@@ -15,3 +15,13 @@ Functioning implementation tested on `darwin-amd64`, `freebsd-amd64` and `linux-
 # 09-09-2018
 
 + [x] Support relocating and renaming `./mbdns.conf` with `--config`
+
+# 23-01-2019
+
++ [x] Fixed a bug where the API response body would read erroneously on error
+
+# 11-05-2022
+
++ [x] [docs for the UDM-SE](/doc/udm-se/README.md)
++ [x] added support for linux arm64/aarch64 builds for the UDM-SE
++ [x] rebuilt all `release-1.0.2` binaries with go1.18.1
