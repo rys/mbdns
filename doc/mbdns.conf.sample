@@ -1,16 +1,16 @@
 [
     {
-        "domain" : "yourdomain.com",
-        "token" : "domain_api_password",
-        "host" : "hostname",
-        "ttl" : "3600",
-        "record": "A"
+        "zone" : "yourdomain.com",
+        "host" : "host",
+        "key_id" : "<API key ID>",
+        "secret" : "<API key secret>",
+        "type": "A"
     },
     {
-        "domain" : "yourdomain.com",
-        "token" : "domain_api_password",
-        "host" : "hostname",
-        "ttl" : "3600",
-        "record": "AAAA"     
+        "zone" : "yourdomain.com",
+        "host" : "host",
+        "key_id" : "<API key ID>",
+        "secret" : "<API key secret>",
+        "type": "AAAA"
     }
 ]

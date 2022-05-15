@@ -1,4 +1,5 @@
-src/mbdns
-src/mbdns.conf
+mbdns
+mbdns.conf
+mbdns-debug
 bin/*
 dist/*

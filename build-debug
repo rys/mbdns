@@ -1,0 +1,15 @@
+#!/usr/local/bin/zsh
+
+GIT_SHA=$(git rev-parse --short HEAD)
+B=./bin
+D=./dist
+
+R=${1}
+[[ -z ${R} ]] && R=${GIT_SHA}
+
+binary=mbdns-debug
+
+LDFLAGS="-X main.BuildVersion=${R} -X main.BuildDate=`date -u '+%Y%m%d'` -X main.GitRev=${GIT_SHA} -X main.BuildUser=${USER}"
+
+go get -u
+go build -ldflags ${LDFLAGS} -o ${binary} mbdns.go

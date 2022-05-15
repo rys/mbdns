@@ -25,3 +25,9 @@ Functioning implementation tested on `darwin-amd64`, `freebsd-amd64` and `linux-
 + [x] [docs for the UDM-SE](/doc/udm-se/README.md)
 + [x] added support for linux arm64/aarch64 builds for the UDM-SE
 + [x] rebuilt all `release-1.0.2` binaries with go1.18.1
+
+# 15-05-2022
+
++ [x] Support for the [Mythic Beasts Primary DNS API v2](https://www.mythic-beasts.com/support/api/dnsv2)
++ [x] Proper go module support
++ [x] Reworked documentation to suit the new implementation

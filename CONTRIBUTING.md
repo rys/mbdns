@@ -4,9 +4,9 @@ We welcome contributions to `mbdns` of any kind, including documentation, functi
 
 ## Building mbdns
 
-Run [src/build-test](/src/build-test) to build a single binary from your git checkout. `go build` will place it into `../bin/mbdns`.
+Run [build-test](/src/build-test) to build a single binary from your git checkout. `go build` will place it into `../bin/mbdns`.
 
-Run [src/build-rel RELEASE_NAME](/src/build-rel) if you'd like to build all supports binaries for a release. The release script will put the current git revision for `HEAD` into `BuildVersion` if you don't supply `RELEASE_NAME`. `go build` will place binaries into `../bin/RELEASE_NAME`.
+Run [build-rel RELEASE_NAME](/src/build-rel) if you'd like to build all supports binaries for a release. The release script will put the current git revision for `HEAD` into `BuildVersion` if you don't supply `RELEASE_NAME`. `go build` will place binaries into `bin/RELEASE_NAME`.
 
 ## Current supported platform configs
 

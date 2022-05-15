@@ -1,8 +1,8 @@
 #!/usr/local/bin/zsh
 
 GIT_SHA=$(git rev-parse --short HEAD)
-B=../bin
-D=../dist
+B=./bin
+D=./dist
 
 R=${1}
 [[ -z ${R} ]] && R=${GIT_SHA}
@@ -14,7 +14,7 @@ binary=${bindir}/mbdns-${R}
 [[ -d ${bindir} ]] && rm -rf ${bindir} && mkdir -p ${bindir}
 [[ -d ${dists} ]]  && rm -rf ${dists}  && mkdir -p ${dists}
 
-LDFLAGS="-X main.BuildVersion=${R} -X main.BuildDate=`date -u '+%Y%m%d'` -X main.GitRev=${GIT_SHA}"
+LDFLAGS="-X main.BuildVersion=${R} -X main.BuildDate=`date -u '+%Y%m%d'` -X main.GitRev=${GIT_SHA} -X main.BuildUser=${USER}"
 
 GOOS=linux   GOARCH=arm    GOARM=6 go build -ldflags ${LDFLAGS} -o ${binary}-linux-armv6   mbdns.go
 GOOS=linux   GOARCH=arm    GOARM=7 go build -ldflags ${LDFLAGS} -o ${binary}-linux-armv7   mbdns.go
@@ -28,9 +28,9 @@ for i (linux-armv6 linux-armv7 linux-mipsle darwin-amd64 freebsd-amd64 linux-amd
     rel=mbdns-${R}-${i}
     out=${dists}/${rel}
     mkdir -p ${out}
-    cp ../doc/mbdns.conf.sample       ${out}
-    cp ../README.md                   ${out}
-    cp ../LICENSE                     ${out}
+    cp ./doc/mbdns.conf.sample       ${out}
+    cp ./README.md                   ${out}
+    cp ./LICENSE                     ${out}
     cp ${binary}-${i}                 ${out}
     tar czf ${out}.tar.gz -C ${dists} ${rel}
     rm -rf ${out}
