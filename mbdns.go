@@ -102,7 +102,7 @@ func updateDynamicDNSv2(url string, clientID string, clientSecret string) error 
 	response, err := client.Do(request)
 
 	if err != nil {
-		return &MbdnsUpdateRecordError{Err: errors.New(mbErrorUpdateFailure)}
+		return &MbdnsUpdateRecordError{Err: errors.New(mbErrorUpdateFailure + " error: " + err.Error())}
 	}
 
 	if response.StatusCode != 200 {
